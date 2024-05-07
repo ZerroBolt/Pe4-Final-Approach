@@ -1,6 +1,8 @@
 using System;
 using GXPEngine;
 using System.Drawing;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 
 public class MyGame : Game {
 	public PlayerData playerData;

@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
 using GXPEngine.Core;
-using TiledMapParser;
 
 namespace GXPEngine
 {
@@ -19,12 +18,12 @@ namespace GXPEngine
         public uint lineWidth;
 
         MyGame myGame;
-        Data data;
+        PlayerData data;
 
         public LineSegment(Vec2 _start, Vec2 _end)
         {
             myGame = ((MyGame)game);
-            data = ((MyGame)game).data;
+            data = ((MyGame)game).playerData;
 
             start = _start;
             end = _end;

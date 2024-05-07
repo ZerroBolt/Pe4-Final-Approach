@@ -13,6 +13,11 @@ namespace GXPEngine
         static float speedPlayer = 10;
         static float heightJump = 20;
 
+
+
+        static uint colorLine = 0xff00ff00;
+        static uint widthLine = 3;
+
         public Vec2 playerGravity
         {
             get
@@ -34,6 +39,22 @@ namespace GXPEngine
             get
             {
                 return heightJump;
+            }
+        }
+
+        public uint lineColor
+        {
+            get
+            {
+                return colorLine;
+            }
+        }
+
+        public uint lineWidth
+        {
+            get
+            {
+                return widthLine;
             }
         }
 
