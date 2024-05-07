@@ -14,9 +14,11 @@ namespace GXPEngine
         Vec2 velocity = new Vec2(0, 0);
         bool arrowKeybind;
 
-        public Player(bool arrowKeybind = false) : base("square.png", 1, 1)
+        public Player(Vec2 pos, bool arrowKeybind = false) : base("square.png", 1, 1)
         {
             data = ((MyGame)game).playerData;
+
+            position = pos;
 
             x = position.x;
             y = position.y;

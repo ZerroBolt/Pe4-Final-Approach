@@ -13,10 +13,13 @@ public class MyGame : Game {
 	{
 		playerData = new PlayerData();
 
-		playerTop = new Player();
-		playerBottom = new Player(true);
+		playerTop = new Player(new Vec2(100, 100));
+		playerBottom = new Player(new Vec2(700, 100), true);
 		AddChild(playerTop);
 		AddChild(playerBottom);
+
+		LineSegment line = new LineSegment(new Vec2(400, 0), new Vec2(400, 600));
+		AddChild(line);
 	}
 
 	void Update() 
