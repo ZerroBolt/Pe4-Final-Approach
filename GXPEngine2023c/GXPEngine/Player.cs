@@ -8,16 +8,21 @@ namespace GXPEngine
 {
     public class Player : AnimationSprite
     {
-        Vec2 position;
+        PlayerData data;
+
+        Vec2 position = new Vec2(100, 100);
+        Vec2 velocity = new Vec2(0, 0);
         bool arrowKeybind;
 
-        float velocity = 1f;
-
-        public Player(Vec2 position, bool arrowKeybind = false) : base("square.png", 1, 1)
+        public Player(bool arrowKeybind = false) : base("square.png", 1, 1)
         {
+            data = ((MyGame)game).playerData;
+
+            x = position.x;
+            y = position.y;
+
             SetOrigin(width / 2, height / 2);
             this.arrowKeybind = arrowKeybind;
-            this.position = position;
         }
 
         void Update()
@@ -31,27 +36,36 @@ namespace GXPEngine
             {
                 if (Input.GetKey(Key.LEFT))
                 {
-                    position.SetXY(position.x + -velocity, position.y);
+                    velocity.x -= data.playerSpeed;
                 }
-                if (Input.GetKey(Key.RIGHT))
+                else if (Input.GetKey(Key.RIGHT))
                 {
-                    position.SetXY(position.x + velocity, position.y);
+                    velocity.x += data.playerSpeed;
                 }
             }
             else
             {
                 if (Input.GetKey(Key.A))
                 {
-                    position.SetXY(position.x + -velocity, position.y);
+                    velocity.x -= data.playerSpeed;
                 }
-                if (Input.GetKey(Key.D))
+                else if (Input.GetKey(Key.D))
                 {
-                    position.SetXY(position.x + velocity, position.y);
+                    velocity.x += data.playerSpeed;
                 }
             }
 
-            this.x = position.x;
-            this.y = position.y;
+            velocity += data.playerGravity;
+
+            UpdatePosition();
+        }
+
+        void UpdatePosition()
+        {
+            position += velocity;
+            velocity.x = 0;
+            x = position.x;
+            y = position.y;
         }
     }
 }
