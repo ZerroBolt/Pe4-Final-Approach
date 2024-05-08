@@ -20,7 +20,7 @@ namespace GXPEngine
             CheckInteraction();
             if (activated)
             {
-                Console.WriteLine("Button activated");
+                
                 //TODO: Add functionality
             }
         }

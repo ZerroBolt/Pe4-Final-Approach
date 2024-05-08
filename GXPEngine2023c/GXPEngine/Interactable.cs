@@ -22,7 +22,7 @@ namespace GXPEngine
         {
             isColliding = false;
             GameObject[] collisions = GetCollisions();
-            foreach (GameObject col in collisions)
+            foreach (Player col in collisions)
             {
                 if (col is Player)
                 {

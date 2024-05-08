@@ -19,7 +19,7 @@ namespace GXPEngine
             CheckInteraction();
             if (activated) 
             {
-                Console.WriteLine("Lever activated");
+                
                 //TODO: Add functionality
             }
         }
