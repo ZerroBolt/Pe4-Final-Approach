@@ -57,7 +57,7 @@ namespace GXPEngine
                 }
             }
 
-            velocity += data.playerGravity;
+            //velocity += data.playerGravity;
 
             UpdatePosition();
         }

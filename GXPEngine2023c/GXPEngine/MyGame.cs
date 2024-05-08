@@ -9,6 +9,9 @@ public class MyGame : Game {
 	Player playerTop;
 	Player playerBottom;
 
+	Button button;
+	Lever lever;
+
 	public MyGame() : base(800, 600, false)
 	{
 		playerData = new PlayerData();
@@ -20,6 +23,11 @@ public class MyGame : Game {
 
 		LineSegment line = new LineSegment(new Vec2(400, 0), new Vec2(400, 600));
 		AddChild(line);
+
+		button = new Button();
+		AddChild(button);
+		lever = new Lever();
+		AddChild(lever);
 	}
 
 	void Update() 
