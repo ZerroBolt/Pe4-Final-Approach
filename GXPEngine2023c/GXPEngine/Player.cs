@@ -14,6 +14,7 @@ namespace GXPEngine
         List<LineSegment> vertLines;
 
         Vec2 position = new Vec2(100, 100);
+        Vec2 startPosition;
         Vec2 velocity = new Vec2(0, 0);
         bool arrowKeybind;
 
@@ -35,6 +36,8 @@ namespace GXPEngine
 
             x = position.x;
             y = position.y;
+
+            startPosition = position;
 
             SetOrigin(width / 2, height / 2);
             this.arrowKeybind = arrowKeybind;
@@ -85,6 +88,7 @@ namespace GXPEngine
             Gravity();
 
             Collisions();
+            CheckObjectCollisions();
         }
 
 
@@ -248,6 +252,29 @@ namespace GXPEngine
         {
             x = position.x;
             y = position.y;
+        }
+
+        public void ResetPosition()
+        {
+            position.x = startPosition.x;
+            position.y = startPosition.y;
+        }
+
+        void CheckObjectCollisions()
+        {
+            GameObject[] collisions = GetCollisions();
+            foreach (GameObject col in collisions)
+            {
+                if (col is AcidPuddle)
+                {
+                    ResetPosition();
+                }
+                if (col is AcidDroplet)
+                {
+                    col.LateDestroy();
+                    ResetPosition();
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace GXPEngine
 {
     public class Button : Interactable
     {
-        public Button() : base (250, 100, "circle.png", 1, 1)
+        public Button(Vec2 pos) : base (pos, "circle.png", 1, 1)
         {
 
         }

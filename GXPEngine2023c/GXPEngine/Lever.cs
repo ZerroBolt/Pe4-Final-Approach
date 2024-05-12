@@ -8,7 +8,7 @@ namespace GXPEngine
 {
     public class Lever : Interactable
     {
-        public Lever() : base(500, 100, "triangle.png", 1, 1)
+        public Lever(Vec2 pos) : base(pos, "triangle.png", 1, 1)
         {
 
         }

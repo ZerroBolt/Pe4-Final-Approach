@@ -11,18 +11,21 @@ namespace GXPEngine
         protected bool isColliding = false;
         protected bool canInteract = true;
         protected bool activated = false;
-        public Interactable(float xPos, float yPos, string fileName, int cols, int rows) : base(fileName, cols, rows)
+
+        public Interactable(Vec2 pos, string fileName, int cols, int rows) : base(fileName, cols, rows)
         {
             SetOrigin(width / 2, height / 2);
             collider.isTrigger = true;
-            SetXY(xPos, yPos);
+
+            x = pos.x;
+            y = pos.y;
         }
 
         protected void Update()
         {
             isColliding = false;
             GameObject[] collisions = GetCollisions();
-            foreach (Player col in collisions)
+            foreach (GameObject col in collisions)
             {
                 if (col is Player)
                 {

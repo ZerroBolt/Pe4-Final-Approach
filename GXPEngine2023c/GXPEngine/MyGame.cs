@@ -6,8 +6,8 @@ using System.Diagnostics.Tracing;
 
 public class MyGame : Game {
 	public PlayerData playerData;
-	Player playerTop;
-	Player playerBottom;
+	Player playerLeft;
+	Player playerRight;
 
 	Button button;
 	Lever lever;
@@ -24,12 +24,12 @@ public class MyGame : Game {
 		vertLines = new List<LineSegment>();
 		horLines = new List<LineSegment>();
 
-		playerTop = new Player(new Vec2(100, 300));
-		playerBottom = new Player(new Vec2(700, 300), true);
-		playerList.Add(playerTop);
-		AddChild(playerTop);
-		playerList.Add(playerBottom);
-		AddChild(playerBottom);
+		playerLeft = new Player(new Vec2(100, 300));
+		playerRight = new Player(new Vec2(700, 300), true);
+		playerList.Add(playerLeft);
+        playerList.Add(playerRight);
+        AddChild(playerLeft);
+		AddChild(playerRight);
 
 		LineSegment line = new LineSegment(new Vec2(400, 0), new Vec2(400, 600));
 		vertLines.Add(line);
@@ -42,11 +42,16 @@ public class MyGame : Game {
 		horLines.Add(line3);
 		AddChild(line3);
 
-		button = new Button();
+		button = new Button(new Vec2(200, 200));
 		AddChild(button);
-		lever = new Lever();
+		lever = new Lever(new Vec2(600, 200));
 		AddChild(lever);
-	}
+
+        AcidPuddle aPuddle = new AcidPuddle(new Vec2(250, 500), true);
+		AddChild(aPuddle);
+        AcidPuddle aPuddle2 = new AcidPuddle(new Vec2(750, 100), false);
+        AddChild(aPuddle2);
+    }
 
 	void Update() 
 	{
