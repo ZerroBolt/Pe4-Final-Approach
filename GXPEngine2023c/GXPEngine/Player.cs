@@ -12,6 +12,7 @@ namespace GXPEngine
 
         List<LineSegment> horLines;
         List<LineSegment> vertLines;
+        List<GravityZone> gravityZones;
 
         Vec2 position = new Vec2(100, 100);
         Vec2 startPosition;
@@ -31,6 +32,7 @@ namespace GXPEngine
 
             horLines = ((MyGame)game).horLines;
             vertLines = ((MyGame)game).vertLines;
+            gravityZones = ((MyGame)game).gravityZones;
 
             position = pos;
 
@@ -51,38 +53,22 @@ namespace GXPEngine
 
         void Move()
         {
-            if (arrowKeybind)
+            if (Input.GetKey(Key.A))
             {
-                if (Input.GetKey(Key.LEFT))
-                {
-                    velocity.x -= data.playerSpeed;
-                }
-                else if (Input.GetKey(Key.RIGHT))
-                {
-                    velocity.x += data.playerSpeed;
-                }
-
-                if (Input.GetKeyDown(Key.UP) && isGrounded)
-                {
-                    velocity.y = -data.jumpHeight;
-                }
+                velocity.x -= data.playerSpeed;
             }
-            else
+            else if (Input.GetKey(Key.D))
             {
-                if (Input.GetKey(Key.A))
-                {
-                    velocity.x -= data.playerSpeed;
-                }
-                else if (Input.GetKey(Key.D))
-                {
-                    velocity.x += data.playerSpeed;
-                }
+                velocity.x += data.playerSpeed;
+            }
 
-                if (Input.GetKeyDown(Key.W) && isGrounded)
-                {
-                    velocity.y = -data.jumpHeight;
-                    
-                }
+            if (Input.GetKeyDown(Key.W) && isGrounded && !gravityInverted)
+            {
+                velocity.y = -data.jumpHeight;   
+            }
+            else if (Input.GetKeyDown(Key.W) && isGrounded && gravityInverted)
+            {
+                velocity.y = data.jumpHeight;
             }
 
             Gravity();
@@ -94,6 +80,8 @@ namespace GXPEngine
 
         void Gravity()
         {
+
+
             if (!gravityInverted)
             {
                 velocity += data.playerGravity;
@@ -102,6 +90,11 @@ namespace GXPEngine
             {
                 velocity -= data.playerGravity;
             }
+        }
+
+        void GravityReverse()
+        {
+
         }
 
         void Collisions()
@@ -138,7 +131,7 @@ namespace GXPEngine
                 {
                     isGrounded = true;
                 }
-                else if (gravityInverted && position.y > otherVert.start.y)
+                else if (gravityInverted && position.y > otherHor.start.y)
                 {
                     isGrounded = true;
                 }
@@ -151,6 +144,7 @@ namespace GXPEngine
 
             if (otherVert != null)
             {
+                Console.WriteLine("col");
                 if (position.x < otherVert.start.x)
                 {
                     position.x = otherVert.start.x - width / 2 - 5;
@@ -212,7 +206,7 @@ namespace GXPEngine
                         earliestTOIVert = toi;
                         lineDir = "vert";
                         other = line;
-                        Console.WriteLine(toi);
+                        //Console.WriteLine(toi);
                     }
                 }
             }
@@ -235,7 +229,7 @@ namespace GXPEngine
             Vec2 lineVec = line.end - line.start;
             float distanceAlongLine = diffVec.Dot(lineVec.Normalized());
 
-            if (distanceAlongLine + edgeDistance > 0 && distanceAlongLine - edgeDistance     < lineVec.Length())
+            if (distanceAlongLine + edgeDistance > 0 && distanceAlongLine - edgeDistance   < lineVec.Length())
             {
                 return true;
             }
@@ -262,6 +256,7 @@ namespace GXPEngine
 
         void CheckObjectCollisions()
         {
+            gravityInverted = false;
             GameObject[] collisions = GetCollisions();
             foreach (GameObject col in collisions)
             {
@@ -273,6 +268,10 @@ namespace GXPEngine
                 {
                     col.LateDestroy();
                     ResetPosition();
+                }
+                if (col is GravityZone)
+                {
+                    gravityInverted = true;
                 }
             }
         }

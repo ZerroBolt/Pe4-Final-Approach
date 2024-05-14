@@ -119,6 +119,10 @@ public struct Vec2
     {
         float a = Mathf.Abs(oldDistance) - radius;
         float b = newDistance - oldDistance;
+        if (b == 0)
+        {
+            return .000001f;
+        }
         return Mathf.Abs(a / b);
     }
 
