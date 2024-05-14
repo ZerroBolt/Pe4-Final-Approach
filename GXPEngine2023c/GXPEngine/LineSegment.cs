@@ -43,10 +43,9 @@ namespace GXPEngine
 
         override protected void RenderSelf(GLContext glContext)
         {
-            if (game != null && !moving)
-            {
+            
                 Gizmos.RenderLine(start.x, start.y, end.x, end.y, color, lineWidth);
-            }
+            
         }
 
         void Update()

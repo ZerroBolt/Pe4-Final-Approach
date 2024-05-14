@@ -27,7 +27,7 @@ namespace GXPEngine
 
         void Update()
         {
-            Console.WriteLine(droplets.Count);
+            //Console.WriteLine(droplets.Count);
             if (Time.time > lastSpawn)
             {
                 lastSpawn = Time.time + spawnIntervalMs;

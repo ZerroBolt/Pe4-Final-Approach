@@ -44,6 +44,7 @@
     <Compile Include="AcidDroplet.cs" />
     <Compile Include="AcidPuddle.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="GravityZone.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
