@@ -42,6 +42,10 @@ public class MyGame : Game {
 		horLines.Add(line3);
 		AddChild(line3);
 
+		LineSegment movingLine = new LineSegment(new Vec2(100, 400), new Vec2(700, 400), true, .1f);
+		horLines.Add(movingLine);
+		AddChild(movingLine);
+
 		button = new Button(new Vec2(200, 200));
 		AddChild(button);
 		lever = new Lever(new Vec2(600, 200));
