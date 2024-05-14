@@ -12,7 +12,6 @@ namespace GXPEngine
 
         List<LineSegment> horLines;
         List<LineSegment> vertLines;
-        List<GravityZone> gravityZones;
 
         Vec2 position = new Vec2(100, 100);
         Vec2 startPosition;
@@ -32,7 +31,6 @@ namespace GXPEngine
 
             horLines = ((MyGame)game).horLines;
             vertLines = ((MyGame)game).vertLines;
-            gravityZones = ((MyGame)game).gravityZones;
 
             position = pos;
 
@@ -90,11 +88,6 @@ namespace GXPEngine
             {
                 velocity -= data.playerGravity;
             }
-        }
-
-        void GravityReverse()
-        {
-
         }
 
         void Collisions()
