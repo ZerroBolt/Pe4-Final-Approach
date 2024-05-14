@@ -9,37 +9,21 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-    public class PullingBeam : GameObject
+    public class PullingBeam : Sprite
     {
         Vec2 position = new Vec2(0, 0);
         Vec2 mousePos = new Vec2(0, 0);
-        public LineSegment line;
-
-        bool firstRun = true;
-        public PullingBeam()
+        public PullingBeam() : base("checkers.png")
         {
-            line = new LineSegment(new Vec2(0, 0), new Vec2(0, 0));
+            SetOrigin(0, height/2);
+            collider.isTrigger = true;
+            width = 300;
         }
 
         void Update()
         {
-            if (firstRun)
-            {
-                parent.AddChild(line);
-                firstRun = false;
-            }
-
-            x = parent.x;
-            y = parent.y;
-
-            //x = position.x = parent.x;
-            //y = position.y = parent.y;
-
-            mousePos = new Vec2(Input.mouseX - x, Input.mouseY - y);
-
-            //position.RotateDegrees((mousePos - position).GetAngleDegrees());
-
-            line.end = mousePos;
+            mousePos = new Vec2(Input.mouseX - parent.x, Input.mouseY - parent.y);
+            rotation = (mousePos - position).GetAngleDegrees();
         }
     }
 }
