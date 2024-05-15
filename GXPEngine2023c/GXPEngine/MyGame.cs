@@ -15,7 +15,6 @@ public class MyGame : Game {
 	public List<Player> playerList;
 	public List<LineSegment> vertLines;
 	public List<LineSegment> horLines;
-	public List<GravityZone> gravityZones;
 
 	public MyGame() : base(800, 600, false)
 	{
@@ -24,11 +23,9 @@ public class MyGame : Game {
 		playerList = new List<Player>();
 		vertLines = new List<LineSegment>();
 		horLines = new List<LineSegment>();
-		gravityZones = new List<GravityZone>();
 
 
 		GravityZone gravityZone = new GravityZone(new Vec2(10, 10), 50, 200);
-		gravityZones.Add(gravityZone);
 		AddChild(gravityZone);
 
 		LineSegment outerLineTop = new LineSegment(new Vec2(0, 0), new Vec2(801, 0));
