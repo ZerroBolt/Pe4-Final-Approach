@@ -22,6 +22,9 @@ namespace GXPEngine
 
             DestroyCurrentLevel();
 
+            Sprite sprite = new Sprite("space_background.png");
+            AddChild(sprite);
+
             switch (levelNumber)
             {
                 case 1:
@@ -57,19 +60,19 @@ namespace GXPEngine
         #region Level Creation Functions
         void CreateOuterLines()
         {
-            LineSegment outerLineTop = new LineSegment(new Vec2(0, 0), new Vec2(((MyGame)game).width + 1, 0));
+            LineSegment outerLineTop = new LineSegment(new Vec2(0, 50), new Vec2(((MyGame)game).width + 1, 50));
             ((MyGame)game).horLines.Add(outerLineTop);
             AddChild(outerLineTop);
             
-            LineSegment outerLineRight = new LineSegment(new Vec2(((MyGame)game).width + 1, 0), new Vec2(((MyGame)game).width + 1, ((MyGame)game).height + 1));
+            LineSegment outerLineRight = new LineSegment(new Vec2(((MyGame)game).width - 50, 0), new Vec2(((MyGame)game).width - 50, ((MyGame)game).height + 1));
             ((MyGame)game).vertLines.Add(outerLineRight);
             AddChild(outerLineRight);
             
-            LineSegment outerLineBottom = new LineSegment(new Vec2(0, ((MyGame)game).height + 1), new Vec2(((MyGame)game).width + 1, ((MyGame)game).height + 1));
+            LineSegment outerLineBottom = new LineSegment(new Vec2(0, ((MyGame)game).height - 50), new Vec2(((MyGame)game).width + 1, ((MyGame)game).height - 50));
             ((MyGame)game).horLines.Add(outerLineBottom);
             AddChild(outerLineBottom);
            
-            LineSegment outerLineLeft = new LineSegment(new Vec2(0, 0), new Vec2(0, ((MyGame)game).height + 1));
+            LineSegment outerLineLeft = new LineSegment(new Vec2(50, 0), new Vec2(50, ((MyGame)game).height + 1));
             ((MyGame)game).vertLines.Add(outerLineLeft);
             AddChild(outerLineLeft);
         }
@@ -87,35 +90,35 @@ namespace GXPEngine
             AddChild(playerLeft);
         }
 
-        void CreateBlock(Vec2 pos, int width, int height, bool _moving = false, float _moveSpeed = 0, float _moveTimer = 0)
+        void CreateBlock(Vec2 pos, int width, int height, bool _moving = false, float _moveSpeed = 0, float _moveTimer = 0, Interactable interactable = null)
         {
             if (height <= 6 && height >= -6) 
             {
-                LineSegment horLine = new LineSegment(pos, new Vec2(pos.x + width, pos.y), _moving, _moveSpeed, _moveTimer);
+                LineSegment horLine = new LineSegment(pos, new Vec2(pos.x + width, pos.y), _moving, _moveSpeed, _moveTimer, interactable);
                 ((MyGame)game).horLines.Add(horLine);
                 AddChild(horLine);
             }
             else if (width <= 6 && width >= -6)
             {
-                LineSegment verLine = new LineSegment(new Vec2(pos.x, pos.y + 1), new Vec2(pos.x, pos.y + height), _moving, _moveSpeed, _moveTimer);
+                LineSegment verLine = new LineSegment(new Vec2(pos.x, pos.y + 1), new Vec2(pos.x, pos.y + height), _moving, _moveSpeed, _moveTimer, interactable);
                 ((MyGame)game).vertLines.Add(verLine);
                 AddChild(verLine);
             }
             else
             {
-                LineSegment horLine = new LineSegment(pos, new Vec2(pos.x + width, pos.y), _moving, _moveSpeed, _moveTimer);
+                LineSegment horLine = new LineSegment(pos, new Vec2(pos.x + width, pos.y), _moving, _moveSpeed, _moveTimer, interactable);
                 ((MyGame)game).horLines.Add(horLine);
                 AddChild(horLine);
                 
-                LineSegment verLine = new LineSegment(new Vec2(pos.x, pos.y + 1), new Vec2(pos.x, pos.y + height), _moving, _moveSpeed, _moveTimer);
+                LineSegment verLine = new LineSegment(new Vec2(pos.x, pos.y + 1), new Vec2(pos.x, pos.y + height-1), _moving, _moveSpeed, _moveTimer, interactable);
                 ((MyGame)game).vertLines.Add(verLine);
                 AddChild(verLine);
 
-                LineSegment horLine2 = new LineSegment(new Vec2(pos.x, pos.y + height), new Vec2(pos.x + width, pos.y + height), _moving, _moveSpeed, _moveTimer);
+                LineSegment horLine2 = new LineSegment(new Vec2(pos.x, pos.y + height), new Vec2(pos.x + width, pos.y + height), _moving, _moveSpeed, _moveTimer, interactable);
                 ((MyGame)game).horLines.Add(horLine2);
                 AddChild(horLine2);
                 
-                LineSegment verLine2 = new LineSegment(new Vec2(pos.x + width, pos.y + 1), new Vec2(pos.x + width, pos.y + height), _moving, _moveSpeed, _moveTimer);
+                LineSegment verLine2 = new LineSegment(new Vec2(pos.x + width, pos.y + 1), new Vec2(pos.x + width, pos.y + height-1), _moving, _moveSpeed, _moveTimer, interactable);
                 ((MyGame)game).vertLines.Add(verLine2);
                 AddChild(verLine2);
             }
@@ -144,46 +147,80 @@ namespace GXPEngine
         #region Levels
         void LoadLevel1()
         {
+            TilesData tiles = new TilesData(levelNumber-1);
+            AddChild(tiles);
+
             // LevelLoader object
-            CreateLevelLoader(new Vec2(1850, 100), 1000);
+            CreateLevelLoader(new Vec2(1800, 180), 500);
 
             // Outer lines
             CreateOuterLines();
 
             // Environment
-            CreateBlock(new Vec2(0, 900), 500, 10);
-            CreateBlock(new Vec2(500, 900), 10, 180);
-            CreateBlock(new Vec2(900, 900), 10, 180);
-            CreateBlock(new Vec2(900, 900), 1500, 10);
+            CreateBlock(new Vec2(0, 840), 540, 40);
+            CreateBlock(new Vec2(500, 850), 40, 180);
+            CreateBlock(new Vec2(500, 960), 90, 40);
+            CreateBlock(new Vec2(560, 960), 40, 90);
+
+            CreateBlock(new Vec2(500, 1020), 400, 40);
+            CreateBlock(new Vec2(840, 840), 40, 180);
+            CreateBlock(new Vec2(840, 840), 1660, 40);
+
+            CreateBlock(new Vec2(0, 540), 300, 40);
+            CreateBlock(new Vec2(900, 540), 300, 40);
+            CreateBlock(new Vec2(1380, 540), 300, 40);
+
+            CreateBlock(new Vec2(180, 240), 300, 40);
+            CreateBlock(new Vec2(900, 240), 300, 40);
+            CreateBlock(new Vec2(1680, 240), 240, 40);
 
             // Interactables
-            Button button = new Button(new Vec2(200, 200));
-            AddChild(button);
-            Lever lever = new Lever(new Vec2(600, 200), 5000);
+            Lever lever = new Lever(new Vec2(1300, 810));
             AddChild(lever);
+            Button button = new Button(new Vec2(1550, 510));
+            AddChild(button);
+            Lever lever1 = new Lever(new Vec2(1050, 510));
+            AddChild(lever1);
+            Lever lever2 = new Lever(new Vec2(1050, 210));
+            AddChild(lever2);
 
             // Moving blocks
-            CreateBlock(new Vec2(150, 400), 550, 50, true, .1f, 2000);
+            CreateBlock(new Vec2(400, 540), 120, 40, true, .3f, 2000, lever1);
+            Tile tile = new Tile("Tiles/FloorEndPiece.png", 400, 540, true, .3f, 2000, lever1);
+            tile.Mirror(true, false);
+            AddChild(tile);
+            Tile tile2 = new Tile("Tiles/FloorEndPiece.png", 460, 540, true, .3f, 2000, lever1);
+            AddChild(tile2);
+
+            CreateBlock(new Vec2(1500, 240), 120, 40, true, -.3f, 3000, lever2);
+            Tile tile3 = new Tile("Tiles/FloorEndPiece.png", 1500, 240, true, -.3f, 3000, lever2);
+            tile3.Mirror(true, false);
+            AddChild(tile3);
+            Tile tile4 = new Tile("Tiles/FloorEndPiece.png", 1560, 240, true, -.3f, 3000, lever2);
+            AddChild(tile4);
 
             // Gravity Zones
-            CreateGravityZone(new Vec2(10, 10), 50, 600, lever);
-            CreateGravityZone(new Vec2(10, 10), 800, 50, lever);
+            CreateGravityZone(new Vec2(1680, 300), 180, 540, lever);
+            CreateGravityZone(new Vec2(60, 60), 120, 480, button);
+
+            CreateGravityZone(new Vec2(480, 180), 420, 120);
 
             // Acid Puddles
-            CreateAcidPuddle(new Vec2(750, 100), true);
-            CreateAcidPuddle(new Vec2(250, 500));
+            CreateAcidPuddle(new Vec2(500, -25), true);
+            CreateAcidPuddle(new Vec2(675, -25), true);
+            CreateAcidPuddle(new Vec2(850, -25), true);
 
             //Crates
-            CreateCrate(new Vec2(100, 100));
+            CreateCrate(new Vec2(1000, 800));
 
             // Player
-            CreatePlayer(new Vec2(100, 300));
+            CreatePlayer(new Vec2(150, 750));
         }
 
         void LoadLevel2()
         {
             // LevelLoader object
-            CreateLevelLoader(new Vec2(400, 250), 1000);
+            CreateLevelLoader(new Vec2(400, 250), 500);
 
             // Outer lines
             CreateOuterLines();

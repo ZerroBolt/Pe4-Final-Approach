@@ -10,7 +10,7 @@ namespace GXPEngine
     {
         int timerTimeMs = 0;
         int timeElapsed = 0;
-        public Lever(Vec2 pos, int timerTimeMs = 0) : base(pos, "triangle.png", 1, 1)
+        public Lever(Vec2 pos, int timerTimeMs = 0) : base(pos, "LeverAnimationSheet.png", 4, 1)
         {
             this.timerTimeMs = timerTimeMs;
         }
@@ -21,8 +21,13 @@ namespace GXPEngine
             CheckInteraction();
             if (activated) 
             {
-                
-                //TODO: Add functionality
+                SetColor(1, 1, 1);
+                SetCycle(3, 1);
+            }
+            else
+            {
+                SetCycle(0, 1);
+                SetColor(0.5f, 0.5f, 0.5f);
             }
         }
 

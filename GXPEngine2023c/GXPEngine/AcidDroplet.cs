@@ -9,7 +9,7 @@ namespace GXPEngine
     public class AcidDroplet : AnimationSprite
     {
         public Vec2 velocity = new Vec2(0, 0);
-        public Vec2 gravityDroplet = new Vec2(0, .1f);
+        public Vec2 gravityDroplet = new Vec2(0, .05f);
         public AcidDroplet(Vec2 pos) : base("colors.png", 1, 1)
         {
             SetOrigin(width / 2, height / 2);

@@ -25,7 +25,9 @@ namespace GXPEngine
         MyGame myGame;
         PlayerData data;
 
-        public LineSegment(Vec2 _start, Vec2 _end, bool _moving = false, float _moveSpeed = 0, float _moveTimer = 0)
+        Interactable interactable;
+
+        public LineSegment(Vec2 _start, Vec2 _end, bool _moving = false, float _moveSpeed = 0, float _moveTimer = 0, Interactable interactable = null)
         {
             myGame = ((MyGame)game);
             data = ((MyGame)game).playerData;
@@ -35,22 +37,24 @@ namespace GXPEngine
             color = data.lineColor;
             lineWidth = data.lineWidth;
 
+            this.interactable = interactable;
+
             moving = _moving;
             moveSpeed = _moveSpeed;
             moveTimer = _moveTimer;
             moveTimeLeft = moveTimer;
         }
 
-        override protected void RenderSelf(GLContext glContext)
-        {
+        //override protected void RenderSelf(GLContext glContext)
+        //{
             
-                Gizmos.RenderLine(start.x, start.y, end.x, end.y, color, lineWidth);
+        //        Gizmos.RenderLine(start.x, start.y, end.x, end.y, color, lineWidth);
             
-        }
+        //}
 
         void Update()
         {
-            if (game != null && moving)
+            if (game != null && moving && (interactable != null && interactable.activated))
             {
                 start.x += moveSpeed;
                 end.x += moveSpeed;

@@ -10,8 +10,8 @@ namespace GXPEngine
     {
         static Vec2 gravityPlayer = new Vec2(0, .1f);
 
-        static float speedPlayer = 5;
-        static float heightJump = 7;
+        static float speedPlayer = 4.5f;
+        static float heightJump = 5;
 
         static float speedPushAndPull = 5;
 

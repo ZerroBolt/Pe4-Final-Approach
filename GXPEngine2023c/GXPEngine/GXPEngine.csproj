@@ -95,6 +95,8 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayerData.cs" />
     <Compile Include="PullingBeam.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="TilesData.cs" />
     <Compile Include="Vec2.cs" />
   </ItemGroup>
   <ItemGroup>

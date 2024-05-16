@@ -10,10 +10,10 @@ namespace GXPEngine
     {
         Interactable interactable;
         public bool active = false;
-        public GravityZone(Vec2 pos, int _width, int _height, Interactable interactable = null) : base("square.png", false, true)
+        public GravityZone(Vec2 pos, int _width, int _height, Interactable interactable = null) : base("white.png", false, true)
         {
             collider.isTrigger = true;
-            SetColor(1, 0, 1);
+            SetColor(0.3f, 0, 0.3f);
 
             x = pos.x;
             y = pos.y;
@@ -22,6 +22,7 @@ namespace GXPEngine
             height = _height;
 
             this.interactable = interactable;
+            alpha = 0.5f;
         }
 
         void Update()

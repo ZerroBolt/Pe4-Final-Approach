@@ -77,11 +77,11 @@ namespace GXPEngine
 
             Animate(0.12f);
 
-            if (Input.GetKeyDown(Key.W) && isGrounded && !gravityInverted)
+            if (Input.GetKeyDown(Key.SPACE) && isGrounded && !gravityInverted)
             {
                 velocity.y = -data.jumpHeight;   
             }
-            else if (Input.GetKeyDown(Key.W) && isGrounded && gravityInverted)
+            else if (Input.GetKeyDown(Key.SPACE) && isGrounded && gravityInverted)
             {
                 velocity.y = data.jumpHeight;
             }
@@ -95,13 +95,16 @@ namespace GXPEngine
 
         void Gravity()
         {
+            Console.WriteLine(_mirrorY);
             if (!gravityInverted)
             {
                 velocity += data.playerGravity;
+                _mirrorY = false;
             }
             else
             {
                 velocity -= data.playerGravity;
+                _mirrorY = true;
             }
         }
 

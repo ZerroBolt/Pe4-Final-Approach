@@ -13,7 +13,7 @@ namespace GXPEngine
         bool gravityInverted = false;
         bool dripping;
 
-        int spawnIntervalMs = 1500;
+        int spawnIntervalMs = 5000;
         int lastSpawn = 0;
         public AcidPuddle(Vec2 pos, bool dripping = false, bool gravityInverted = false) : base ("colors.png", 1, 1)
         {

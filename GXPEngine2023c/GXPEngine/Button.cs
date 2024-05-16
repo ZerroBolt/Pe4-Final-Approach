@@ -9,7 +9,7 @@ namespace GXPEngine
 {
     public class Button : Interactable
     {
-        public Button(Vec2 pos) : base (pos, "circle.png", 1, 1)
+        public Button(Vec2 pos) : base (pos, "ButtonSheet.png", 2, 1)
         {
 
         }
@@ -20,8 +20,11 @@ namespace GXPEngine
             CheckInteraction();
             if (activated)
             {
-                
-                //TODO: Add functionality
+                SetCycle(1, 1);
+            }
+            else
+            {
+                SetCycle(0, 1);
             }
         }
 

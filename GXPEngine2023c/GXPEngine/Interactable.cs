@@ -33,14 +33,14 @@ namespace GXPEngine
                 }
             }
 
-            if (activated)
-            {
-                SetColor(1, 1, 1);
-            }
-            else
-            {
-                SetColor(0.5f, 0.5f, 0.5f);
-            }
+            //if (activated)
+            //{
+            //    SetColor(1, 1, 1);
+            //}
+            //else
+            //{
+            //    SetColor(0.5f, 0.5f, 0.5f);
+            //}
         }
     }
 }

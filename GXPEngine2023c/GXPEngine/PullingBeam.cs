@@ -17,7 +17,7 @@ namespace GXPEngine
         {
             SetOrigin(0, height/2);
             collider.isTrigger = true;
-            width = 300;
+            width = 3000;
 
             alpha = 0;
         }
