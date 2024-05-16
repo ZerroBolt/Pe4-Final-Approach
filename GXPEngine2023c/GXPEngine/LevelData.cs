@@ -133,6 +133,12 @@ namespace GXPEngine
             AcidPuddle aPuddle = new AcidPuddle(pos, dripping, gravityInverted);
             AddChild(aPuddle);
         }
+
+        void CreateCrate(Vec2 pos)
+        {
+            Crate crate = new Crate(pos);
+            AddChild(crate);
+        }
         #endregion
 
         #region Levels
@@ -166,6 +172,9 @@ namespace GXPEngine
             // Acid Puddles
             CreateAcidPuddle(new Vec2(750, 100), true);
             CreateAcidPuddle(new Vec2(250, 500));
+
+            //Crates
+            CreateCrate(new Vec2(100, 100));
 
             // Player
             CreatePlayer(new Vec2(100, 300));

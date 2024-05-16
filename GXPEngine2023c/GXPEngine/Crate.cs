@@ -35,7 +35,7 @@ namespace GXPEngine
             horLines = ((MyGame)game).horLines;
             vertLines = ((MyGame)game).vertLines;
 
-            player = ((MyGame)game).player;
+
 
             SetColor(1, 0, 0);
 
@@ -62,9 +62,16 @@ namespace GXPEngine
 
         void Update()
         {
-            Move();
-            UpdatePosition();
-            UpdateLines();
+            if (player == null)
+            {
+                player = ((MyGame)game).FindObjectOfType<Player>();
+            }
+            else
+            {
+                Move();
+                UpdatePosition();
+                UpdateLines();
+            }
         }
 
         void Move()
@@ -212,7 +219,11 @@ namespace GXPEngine
             {
                 if (col is GravityZone)
                 {
-                    gravityInverted = true;
+                    GravityZone gravityZone = col as GravityZone;
+                    if (gravityZone.active)
+                    {
+                        gravityInverted = true;
+                    }
                 }
 
                 if (col is PullingBeam)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +41,9 @@ namespace GXPEngine
 
             SetOrigin(width / 2, height / 2);
             this.arrowKeybind = arrowKeybind;
+
+            PullingBeam pullingBeam = new PullingBeam();
+            AddChild(pullingBeam);
 
             SetCycle(0, 1);
 

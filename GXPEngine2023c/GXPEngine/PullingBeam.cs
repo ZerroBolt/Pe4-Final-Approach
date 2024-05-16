@@ -18,6 +18,8 @@ namespace GXPEngine
             SetOrigin(0, height/2);
             collider.isTrigger = true;
             width = 300;
+
+            alpha = 0;
         }
 
         void Update()
