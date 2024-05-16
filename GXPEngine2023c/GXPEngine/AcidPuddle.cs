@@ -11,23 +11,28 @@ namespace GXPEngine
     {
         List<AcidDroplet> droplets = new List<AcidDroplet>();
         bool gravityInverted = false;
+        bool dripping;
 
         int spawnIntervalMs = 1500;
         int lastSpawn = 0;
-        public AcidPuddle(Vec2 pos, bool gravityInverted) : base ("colors.png", 1, 1)
+        public AcidPuddle(Vec2 pos, bool dripping = false, bool gravityInverted = false) : base ("colors.png", 1, 1)
         {
             SetOrigin(width / 2, height / 2);
             collider.isTrigger = true;
             
             x = pos.x;
             y = pos.y;
+            this.dripping = dripping;
 
             this.gravityInverted = gravityInverted;
         }
 
         void Update()
         {
-            //Console.WriteLine(droplets.Count);
+            if (!dripping) 
+            { 
+                return; 
+            }
             if (Time.time > lastSpawn)
             {
                 lastSpawn = Time.time + spawnIntervalMs;
