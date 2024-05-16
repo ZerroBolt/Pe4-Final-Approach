@@ -18,7 +18,6 @@ public class MyGame : Game {
 
 	public MyGame() : base(1920, 1080, false, false)
 	{
-		targetFps = 60;
 		playerData = new PlayerData();
 
 		playerList = new List<Player>();

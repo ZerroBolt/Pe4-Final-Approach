@@ -41,6 +41,9 @@ namespace GXPEngine
 
             SetOrigin(width / 2, height / 2);
             this.arrowKeybind = arrowKeybind;
+
+            PullingBeam pullingBeam = new PullingBeam();
+            AddChild(pullingBeam);
         }
 
         void Update()
