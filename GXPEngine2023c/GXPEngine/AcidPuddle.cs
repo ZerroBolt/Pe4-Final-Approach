@@ -20,7 +20,7 @@ namespace GXPEngine
             SetOrigin(width / 2, height / 2);
             collider.isTrigger = true;
 
-            scale = 5;
+            //scale = 5;
             
             x = pos.x;
             y = pos.y;

@@ -47,9 +47,9 @@ namespace GXPEngine
 
         //override protected void RenderSelf(GLContext glContext)
         //{
-            
-        //        Gizmos.RenderLine(start.x, start.y, end.x, end.y, color, lineWidth);
-            
+
+        //    Gizmos.RenderLine(start.x, start.y, end.x, end.y, color, lineWidth);
+
         //}
 
         void Update()

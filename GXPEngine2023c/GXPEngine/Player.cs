@@ -76,6 +76,7 @@ namespace GXPEngine
             }
 
             Animate(0.12f);
+            //Console.WriteLine(isGrounded);
 
             if (Input.GetKeyDown(Key.SPACE) && isGrounded && !gravityInverted)
             {
@@ -95,7 +96,7 @@ namespace GXPEngine
 
         void Gravity()
         {
-            Console.WriteLine(_mirrorY);
+            //Console.WriteLine(_mirrorY);
             if (!gravityInverted)
             {
                 velocity += data.playerGravity;
@@ -117,7 +118,7 @@ namespace GXPEngine
 
             if (otherHor != null)
             {
-                if (position.y < otherHor.start.y)
+                if (position.y <= otherHor.start.y)
                 {
                     position.y = otherHor.start.y - height / 2;
                     velocity.y = 0;
@@ -138,11 +139,11 @@ namespace GXPEngine
                     }
                 }
 
-                if (!gravityInverted && position.y < otherHor.start.y)
+                if (!gravityInverted && position.y <= otherHor.start.y)
                 {
                     isGrounded = true;
                 }
-                else if (gravityInverted && position.y > otherHor.start.y)
+                else if (gravityInverted && position.y >= otherHor.start.y)
                 {
                     isGrounded = true;
                 }
@@ -155,7 +156,7 @@ namespace GXPEngine
 
             if (otherVert != null)
             {
-                Console.WriteLine("col");
+                //Console.WriteLine("col");
                 if (position.x < otherVert.start.x)
                 {
                     position.x = otherVert.start.x - width / 2 - 5;

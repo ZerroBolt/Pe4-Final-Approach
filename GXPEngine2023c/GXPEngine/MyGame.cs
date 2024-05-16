@@ -16,6 +16,8 @@ public class MyGame : Game {
 	public List<LineSegment> vertLines;
 	public List<LineSegment> horLines;
 
+	SoundChannel soundTrack;
+
 	public MyGame() : base(1920, 1080, false, false)
 	{
 		targetFps = 90;
@@ -25,6 +27,9 @@ public class MyGame : Game {
 		vertLines = new List<LineSegment>();
 		horLines = new List<LineSegment>();
 
+        soundTrack = new SoundChannel(1);
+        soundTrack = new Sound("Cosmic_Conundrum.mp3", true).Play();
+
 		levelData = new LevelData();
 		AddChild(levelData);
 		levelData.LoadNextLevel();
@@ -32,8 +37,9 @@ public class MyGame : Game {
 
 	void Update() 
 	{
-		
-	}
+		if (Input.GetKeyDown(Key.UP) && soundTrack.Volume < 1) soundTrack.Volume += 0.1f;
+		else if (Input.GetKeyDown(Key.DOWN) && soundTrack.Volume > 0) soundTrack.Volume -= 0.1f;
+    }
 
 	static void Main()
 	{

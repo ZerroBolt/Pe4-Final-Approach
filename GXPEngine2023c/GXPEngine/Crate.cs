@@ -28,16 +28,12 @@ namespace GXPEngine
         LineSegment right;
         LineSegment bottom;
         
-        public Crate(Vec2 pos) : base("square.png", false, true)
+        public Crate(Vec2 pos) : base("crate.png", false, true)
         {
             data = ((MyGame)game).playerData;
 
             horLines = ((MyGame)game).horLines;
             vertLines = ((MyGame)game).vertLines;
-
-
-
-            SetColor(1, 0, 0);
 
             position = pos;
 
@@ -120,7 +116,6 @@ namespace GXPEngine
 
             if (otherVert != null)
             {
-                Console.WriteLine("col");
                 if (position.x < otherVert.start.x)
                 {
                     position.x = otherVert.start.x - width / 2 - 5;

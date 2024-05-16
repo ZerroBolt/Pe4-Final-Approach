@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcidDroplet.cs" />
+    <Compile Include="AcidPipe.cs" />
     <Compile Include="AcidPuddle.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Crate.cs" />
