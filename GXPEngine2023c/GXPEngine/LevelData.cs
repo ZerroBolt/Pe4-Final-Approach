@@ -139,16 +139,16 @@ namespace GXPEngine
         void LoadLevel1()
         {
             // LevelLoader object
-            CreateLevelLoader(new Vec2(400, 250), 1000);
+            CreateLevelLoader(new Vec2(1850, 100), 1000);
 
             // Outer lines
             CreateOuterLines();
 
             // Environment
-            CreateBlock(new Vec2(0, 500), 500, 10);
-            CreateBlock(new Vec2(300, 300), 200, 10);
-            CreateBlock(new Vec2(300, 300), 10, -200);
-            CreateBlock(new Vec2(500, 300), -10, -200);
+            CreateBlock(new Vec2(0, 900), 500, 10);
+            CreateBlock(new Vec2(500, 900), 10, 180);
+            CreateBlock(new Vec2(900, 900), 10, 180);
+            CreateBlock(new Vec2(900, 900), 1500, 10);
 
             // Interactables
             Button button = new Button(new Vec2(200, 200));

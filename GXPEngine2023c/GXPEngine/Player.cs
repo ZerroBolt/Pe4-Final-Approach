@@ -25,7 +25,7 @@ namespace GXPEngine
         bool gravityInverted = false;
         bool isGrounded = false;
 
-        public Player(Vec2 pos, bool arrowKeybind = false) : base("square.png", 1, 1)
+        public Player(Vec2 pos, bool arrowKeybind = false) : base("run_anim.png", 4, 1)
         {
             data = ((MyGame)game).playerData;
 
@@ -41,6 +41,10 @@ namespace GXPEngine
 
             SetOrigin(width / 2, height / 2);
             this.arrowKeybind = arrowKeybind;
+
+            SetCycle(0, 1);
+
+            scale = 0.1f;
         }
 
         void Update()
@@ -54,11 +58,21 @@ namespace GXPEngine
             if (Input.GetKey(Key.A))
             {
                 velocity.x -= data.playerSpeed;
+                SetCycle(0, 4);
+                _mirrorX = true;
             }
             else if (Input.GetKey(Key.D))
             {
                 velocity.x += data.playerSpeed;
+                SetCycle(0, 4);
+                _mirrorX = false;
             }
+            else
+            {
+                SetCycle(0, 1);
+            }
+
+            Animate(0.12f);
 
             if (Input.GetKeyDown(Key.W) && isGrounded && !gravityInverted)
             {
