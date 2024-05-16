@@ -51,7 +51,7 @@ namespace GXPEngine
             ((MyGame)game).playerList.Clear();
             ((MyGame)game).vertLines.Clear();
             ((MyGame)game).horLines.Clear();
-            ((MyGame)game).gravityZones.Clear();
+            //((MyGame)game).gravityZones.Clear();
         }
 
         #region Level Creation Functions
@@ -74,9 +74,9 @@ namespace GXPEngine
             AddChild(outerLineLeft);
         }
 
-        void CreateLevelLoader(Vec2 pos)
+        void CreateLevelLoader(Vec2 pos, int collisionTimeMs = 0)
         {
-            LevelLoader levelLoader = new LevelLoader(pos);
+            LevelLoader levelLoader = new LevelLoader(pos, collisionTimeMs);
             AddChild(levelLoader);
         }
 
@@ -121,10 +121,10 @@ namespace GXPEngine
             }
         }
 
-        void CreateGravityZone(Vec2 pos, int width, int height)
+        void CreateGravityZone(Vec2 pos, int width, int height, Interactable interactable = null)
         {
-            GravityZone gravityZone = new GravityZone(pos, width, height);
-            ((MyGame)game).gravityZones.Add(gravityZone);
+            GravityZone gravityZone = new GravityZone(pos, width, height, interactable);
+            //((MyGame)game).gravityZones.Add(gravityZone);
             AddChild(gravityZone);
         }
 
@@ -139,7 +139,7 @@ namespace GXPEngine
         void LoadLevel1()
         {
             // LevelLoader object
-            CreateLevelLoader(new Vec2(400, 250));
+            CreateLevelLoader(new Vec2(400, 250), 1000);
 
             // Outer lines
             CreateOuterLines();
@@ -147,18 +147,25 @@ namespace GXPEngine
             // Environment
             CreateBlock(new Vec2(0, 500), 500, 10);
             CreateBlock(new Vec2(300, 300), 200, 10);
+            CreateBlock(new Vec2(300, 300), 10, -200);
+            CreateBlock(new Vec2(500, 300), -10, -200);
+
+            // Interactables
+            Button button = new Button(new Vec2(200, 200));
+            AddChild(button);
+            Lever lever = new Lever(new Vec2(600, 200), 5000);
+            AddChild(lever);
 
             // Moving blocks
             CreateBlock(new Vec2(150, 400), 550, 50, true, .1f, 2000);
 
             // Gravity Zones
-            CreateGravityZone(new Vec2(10, 10), 50, 200);
+            CreateGravityZone(new Vec2(10, 10), 50, 600, lever);
+            CreateGravityZone(new Vec2(10, 10), 800, 50, lever);
 
-            // Interactables
-            Button button = new Button(new Vec2(200, 200));
-            AddChild(button);
-            Lever lever = new Lever(new Vec2(600, 200));
-            AddChild(lever);
+            // Acid Puddles
+            CreateAcidPuddle(new Vec2(750, 100), true);
+            CreateAcidPuddle(new Vec2(250, 500));
 
             // Player
             CreatePlayer(new Vec2(100, 300));
@@ -167,7 +174,7 @@ namespace GXPEngine
         void LoadLevel2()
         {
             // LevelLoader object
-            CreateLevelLoader(new Vec2(400, 250));
+            CreateLevelLoader(new Vec2(400, 250), 1000);
 
             // Outer lines
             CreateOuterLines();
@@ -175,19 +182,23 @@ namespace GXPEngine
             // Environment
             CreateBlock(new Vec2(0, 500), 500, 10);
             CreateBlock(new Vec2(300, 300), 200, 10);
+            CreateBlock(new Vec2(300, 300), 10, -200);
+            CreateBlock(new Vec2(500, 300), -10, -200);
+
+            // Interactables
+            Button button = new Button(new Vec2(200, 200));
+            AddChild(button);
+            Lever lever = new Lever(new Vec2(600, 200), 5000);
+            AddChild(lever);
 
             // Moving blocks
             CreateBlock(new Vec2(150, 400), 550, 50, true, .1f, 2000);
 
             // Gravity Zones
-            CreateGravityZone(new Vec2(10, 10), 50, 200);
+            CreateGravityZone(new Vec2(10, 10), 50, 600, lever);
+            CreateGravityZone(new Vec2(10, 10), 800, 50, lever);
 
-            // Interactables
-            Button button = new Button(new Vec2(200, 200));
-            AddChild(button);
-            Lever lever = new Lever(new Vec2(600, 200));
-            AddChild(lever);
-
+            // Acid Puddles
             CreateAcidPuddle(new Vec2(750, 100), true);
             CreateAcidPuddle(new Vec2(250, 500));
 
@@ -198,23 +209,25 @@ namespace GXPEngine
         void LoadLevel3()
         {
             // LevelLoader object
-            CreateLevelLoader(new Vec2(400, 250));
+            CreateLevelLoader(new Vec2(400, 250), 1000);
 
             // Outer lines
             CreateOuterLines();
 
             // Environment
-            CreateBlock(new Vec2(300, 300), 200, 10);
             CreateBlock(new Vec2(0, 450), 200, 10);
             CreateBlock(new Vec2(800, 450), -200, 10);
 
-            // Moving blocks
+            // Interactables
 
+
+            // Moving blocks
+            CreateBlock(new Vec2(300, 300), 200, 10, true, .4f, 3000);
 
             // Gravity Zones
 
 
-            // Interactables
+            // Acid Puddles
 
 
             // Player

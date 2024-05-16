@@ -10,7 +10,7 @@ namespace GXPEngine
     {
         protected bool isColliding = false;
         protected bool canInteract = true;
-        protected bool activated = false;
+        public bool activated = false;
 
         public Interactable(Vec2 pos, string fileName, int cols, int rows) : base(fileName, cols, rows)
         {
@@ -27,7 +27,7 @@ namespace GXPEngine
             GameObject[] collisions = GetCollisions();
             foreach (GameObject col in collisions)
             {
-                if (col is Player)
+                if (col is Player || (this is Button && col is Crate))
                 {
                     isColliding = true;
                 }

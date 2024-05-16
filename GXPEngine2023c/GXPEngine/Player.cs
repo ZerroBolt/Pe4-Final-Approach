@@ -264,7 +264,11 @@ namespace GXPEngine
                 }
                 if (col is GravityZone)
                 {
-                    gravityInverted = true;
+                    GravityZone gravityZone = col as GravityZone;
+                    if (gravityZone.active) 
+                    { 
+                        gravityInverted = true;
+                    }
                 }
             }
         }

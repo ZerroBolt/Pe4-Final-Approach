@@ -8,9 +8,11 @@ namespace GXPEngine
 {
     public class Lever : Interactable
     {
-        public Lever(Vec2 pos) : base(pos, "triangle.png", 1, 1)
+        int timerTimeMs = 0;
+        int timeElapsed = 0;
+        public Lever(Vec2 pos, int timerTimeMs = 0) : base(pos, "triangle.png", 1, 1)
         {
-
+            this.timerTimeMs = timerTimeMs;
         }
 
         private void Update()
@@ -26,6 +28,17 @@ namespace GXPEngine
 
         private void CheckInteraction()
         {
+            //TODO: When timer is set can the player still turn it off manually??
+            //      Or does it turn off only after the timer is done??
+            if (timerTimeMs > 0 && activated)
+            {
+                timeElapsed += Time.deltaTime;
+                if (timeElapsed >= timerTimeMs)
+                {
+                    activated = !activated;
+                    timeElapsed = 0;
+                }
+            }
             if (!isColliding)
             {
                 canInteract = true;
@@ -34,6 +47,7 @@ namespace GXPEngine
             {
                 canInteract = false;
                 activated = !activated;
+                timeElapsed = 0;
             }
         }
     }

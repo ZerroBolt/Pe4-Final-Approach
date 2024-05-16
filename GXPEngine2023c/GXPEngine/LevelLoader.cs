@@ -9,15 +9,17 @@ namespace GXPEngine
     public class LevelLoader : AnimationSprite
     {
         bool isColliding = false;
-        int collisionIntervalMs = 1000;
-        int collisionTime = 0;
-        public LevelLoader(Vec2 pos) : base("triangle.png", 1, 1)
+        int collisionTimeMs = 0;
+        int collisionTimeElapsed = 0;
+        public LevelLoader(Vec2 pos, int collisionTimeMs = 0) : base("triangle.png", 1, 1)
         { 
             SetOrigin(width / 2, height / 2);
             SetColor(1, 0, 0);
 
             x = pos.x;
             y = pos.y;
+
+            this.collisionTimeMs = collisionTimeMs;
         }
 
         void Update()
@@ -29,17 +31,17 @@ namespace GXPEngine
                 if (col is Player)
                 {
                     isColliding = true;
-                    collisionTime += Time.deltaTime;
-                    if (collisionTime >= collisionIntervalMs)
+                    collisionTimeElapsed += Time.deltaTime;
+                    if (collisionTimeElapsed >= collisionTimeMs)
                     {
                         //TODO: uncomment
-                        //((MyGame)game).levelData.LoadNextLevel();
+                        ((MyGame)game).levelData.LoadNextLevel();
                     }
                 }
             }
             if (!isColliding)
             {
-                collisionTime = 0;
+                collisionTimeElapsed = 0;
             }
         }
     }

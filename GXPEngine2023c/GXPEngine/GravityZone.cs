@@ -8,8 +8,9 @@ namespace GXPEngine
 {
     public class GravityZone : Sprite
     {
-
-        public GravityZone(Vec2 pos, int _width, int _height) : base("square.png", false, true)
+        Interactable interactable;
+        public bool active = false;
+        public GravityZone(Vec2 pos, int _width, int _height, Interactable interactable = null) : base("square.png", false, true)
         {
             collider.isTrigger = true;
             SetColor(1, 0, 1);
@@ -19,6 +20,22 @@ namespace GXPEngine
 
             width = _width;
             height = _height;
+
+            this.interactable = interactable;
+        }
+
+        void Update()
+        {
+            if (interactable == null || interactable.activated)
+            {
+                active = true;
+                visible = true;
+            }
+            else
+            {
+                active = false;
+                visible = false;
+            }
         }
     }
 }
