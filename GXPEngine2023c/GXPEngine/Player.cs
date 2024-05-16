@@ -13,7 +13,7 @@ namespace GXPEngine
         List<LineSegment> horLines;
         List<LineSegment> vertLines;
 
-        Vec2 position = new Vec2(100, 100);
+        public Vec2 position = new Vec2(100, 100);
         Vec2 startPosition;
         Vec2 velocity = new Vec2(0, 0);
         bool arrowKeybind;
@@ -78,8 +78,6 @@ namespace GXPEngine
 
         void Gravity()
         {
-
-
             if (!gravityInverted)
             {
                 velocity += data.playerGravity;
@@ -250,6 +248,7 @@ namespace GXPEngine
         void CheckObjectCollisions()
         {
             gravityInverted = false;
+
             GameObject[] collisions = GetCollisions();
             foreach (GameObject col in collisions)
             {

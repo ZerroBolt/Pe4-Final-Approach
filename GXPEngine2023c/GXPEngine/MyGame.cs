@@ -6,8 +6,7 @@ using System.Diagnostics.Tracing;
 
 public class MyGame : Game {
 	public PlayerData playerData;
-	Player playerLeft;
-	Player playerRight;
+	public Player player;
 
 	Button button;
 	Lever lever;
@@ -60,15 +59,18 @@ public class MyGame : Game {
 		lever = new Lever(new Vec2(600, 200));
 		AddChild(lever);
 
+		Crate crate = new Crate(new Vec2(50, 100));
+		AddChild(crate);
+
   //      AcidPuddle aPuddle = new AcidPuddle(new Vec2(250, 500), true);
 		//AddChild(aPuddle);
   //      AcidPuddle aPuddle2 = new AcidPuddle(new Vec2(750, 100), false);
   //      AddChild(aPuddle2);
 
 
-        playerLeft = new Player(new Vec2(100, 300));
-        playerList.Add(playerLeft);
-        AddChild(playerLeft);
+        player = new Player(new Vec2(100, 300));
+        playerList.Add(player);
+        AddChild(player);
     }
 
 	void Update() 
