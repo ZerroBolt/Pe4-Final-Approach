@@ -206,9 +206,9 @@ namespace GXPEngine
             CreateGravityZone(new Vec2(480, 180), 420, 120);
 
             // Acid Puddles
-            CreateAcidPuddle(new Vec2(500, -25), true);
-            CreateAcidPuddle(new Vec2(675, -25), true);
-            CreateAcidPuddle(new Vec2(850, -25), true);
+            CreateAcidPuddle(new Vec2(560, -100), true);
+            CreateAcidPuddle(new Vec2(675, -100), true);
+            CreateAcidPuddle(new Vec2(790, -100), true);
 
             //Crates
             CreateCrate(new Vec2(1000, 800));

@@ -10,13 +10,12 @@ namespace GXPEngine
     {
         public Vec2 velocity = new Vec2(0, 0);
         public Vec2 gravityDroplet = new Vec2(0, .05f);
-        public AcidDroplet(Vec2 pos) : base("colors.png", 1, 1)
+        public AcidDroplet(Vec2 pos) : base("AcidDroplet.png", 1, 1)
         {
             SetOrigin(width / 2, height / 2);
             collider.isTrigger = true;
 
-            //TODO: Remove or edit scale based on sprite
-            scale = 0.2f;
+            scale = 2;
 
             x = pos.x;
             y = pos.y;
