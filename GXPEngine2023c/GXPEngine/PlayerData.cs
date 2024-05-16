@@ -13,7 +13,7 @@ namespace GXPEngine
         static float speedPlayer = 5;
         static float heightJump = 7;
 
-
+        static float speedPushAndPull = 5;
 
         static uint colorLine = 0xff00ff00;
         static uint widthLine = 3;
@@ -39,6 +39,14 @@ namespace GXPEngine
             get
             {
                 return heightJump;
+            }
+        }
+
+        public float pushAndPullSpeed
+        {
+            get
+            {
+                return speedPushAndPull;
             }
         }
 
