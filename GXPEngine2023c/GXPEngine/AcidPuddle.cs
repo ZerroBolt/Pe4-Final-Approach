@@ -17,7 +17,9 @@ namespace GXPEngine
         int lastSpawn = 0;
         public AcidPuddle(Vec2 pos, bool dripping = false, bool gravityInverted = false) : base ("AcidPuddle.png", 1, 1)
         {
-            SetOrigin(width / 2, height / 2);
+            width = 60;
+            //height = 60;
+            //SetOrigin(width / 2, height / 2);
             collider.isTrigger = true;
 
             //scale = 5;

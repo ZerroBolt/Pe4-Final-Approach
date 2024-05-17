@@ -33,9 +33,6 @@ namespace GXPEngine
                 case 2:
                     LoadLevel2(); 
                     break;
-                case 3:
-                    LoadLevel3();
-                    break;
                 default:
                     levelNumber = 0;
                     LoadNextLevel();
@@ -196,7 +193,7 @@ namespace GXPEngine
             CreateBlock(new Vec2(1680, 240), 240, 40);
 
             // Interactables
-            Lever lever = new Lever(new Vec2(1460, 810));
+            Lever lever = new Lever(new Vec2(1400, 810));
             AddChild(lever);
             Button button = new Button(new Vec2(1580, 510));
             AddChild(button);
@@ -206,16 +203,16 @@ namespace GXPEngine
             AddChild(lever2);
 
             // Moving blocks
-            CreateBlock(new Vec2(400, 540), 120, 40, true, .3f, 2000, lever1);
-            Tile tile = new Tile("MovingPlatformLeft.png", 400, 540, true, .3f, 2000, lever1);
+            CreateBlock(new Vec2(400, 540), 120, 40, true, .5f, 4000, lever1);
+            Tile tile = new Tile("MovingPlatformLeft.png", 400, 540, true, .5f, 4000, lever1);
             AddChild(tile);
-            Tile tile2 = new Tile("MovingPlatformRight.png", 460, 540, true, .3f, 2000, lever1);
+            Tile tile2 = new Tile("MovingPlatformRight.png", 460, 540, true, .5f, 4000, lever1);
             AddChild(tile2);
 
-            CreateBlock(new Vec2(1500, 240), 120, 40, true, -.3f, 3000, lever2);
-            Tile tile3 = new Tile("MovingPlatformLeft.png", 1500, 240, true, -.3f, 3000, lever2);
+            CreateBlock(new Vec2(1500, 240), 120, 40, true, -.5f, 3000, lever2);
+            Tile tile3 = new Tile("MovingPlatformLeft.png", 1500, 240, true, -.5f, 3000, lever2);
             AddChild(tile3);
-            Tile tile4 = new Tile("MovingPlatformRight.png", 1560, 240, true, -.3f, 3000, lever2);
+            Tile tile4 = new Tile("MovingPlatformRight.png", 1560, 240, true, -.5f, 3000, lever2);
             AddChild(tile4);
 
             // Gravity Zones
@@ -250,17 +247,18 @@ namespace GXPEngine
             CreateOuterLines();
 
             // Environment
-            CreateBlock(new Vec2(60, 960), 900, 40);
+            CreateBlock(new Vec2(60, 960), 960, 40);
             CreateBlock(new Vec2(1260, 960), 600, 40);
 
             CreateBlock(new Vec2(60, 720), 480, 40);
-            CreateBlock(new Vec2(660, 720), 240, 40);
+            //CreateBlock(new Vec2(660, 720), 240, 40);
             CreateBlock(new Vec2(1020, 720), 600, 40);
 
             CreateBlock(new Vec2(60, 600), 120, 40);
 
-            CreateBlock(new Vec2(300, 480), 480, 40);
+            CreateBlock(new Vec2(300, 480), 540, 40);
             CreateBlock(new Vec2(1080, 400), 60, 140);
+            CreateBlock(new Vec2(1020, 420), 60, 60);
             CreateBlock(new Vec2(1260, 480), 600, 40);
             CreateBlock(new Vec2(1320, 400), 60, 120);
             CreateBlock(new Vec2(1080, 360), 780, 40);
@@ -270,43 +268,47 @@ namespace GXPEngine
             CreateBlock(new Vec2(900, 180), 720, 40);
 
             // Interactables
+            Lever lever = new Lever(new Vec2(1830, 930));
+            AddChild(lever);
+            Button button = new Button(new Vec2(1200, 690));
+            AddChild(button);
+
+            Button button1 = new Button(new Vec2(1200, 330));
+            AddChild(button1);
 
             // Moving blocks
+            CreateBlock(new Vec2(540, 720), 120, 40, true, .5f, 4000, button);
+            Tile tile = new Tile("MovingPlatformLeft.png", 540, 720, true, .5f, 4000, button);
+            AddChild(tile);
+            Tile tile2 = new Tile("MovingPlatformRight.png", 600, 720, true, .5f, 4000, button);
+            AddChild(tile2);
+
+            CreateBlock(new Vec2(780, 240), 120, 40, true, -.5f, 6000, button1);
+            Tile tile3 = new Tile("MovingPlatformLeft.png", 780, 240, true, -.5f, 6000, button1);
+            AddChild(tile3);
+            Tile tile4 = new Tile("MovingPlatformRight.png", 840, 240, true, -.5f, 6000, button1);
+            AddChild(tile4);
 
             // Gravity Zones
+            CreateGravityZone(new Vec2(1620, 540), 120, 420, lever);
 
-            // Acid Puddles
+            // Acid
+            CreateAcidPipe(1, new Vec2(1020, 940));
+            CreateAcidPipe(1, new Vec2(1080, 940));
+            CreateAcidPipe(1, new Vec2(1140, 940));
+            CreateAcidPipe(1, new Vec2(1200, 940));
+
+            CreateAcidPuddle(new Vec2(1050, 990));
+            CreateAcidPuddle(new Vec2(1110, 990));
+            CreateAcidPuddle(new Vec2(1170, 990));
+
+            // Crates
+            CreateCrate(new Vec2(1410, 900));
+            CreateCrate(new Vec2(1265, 440));
+            CreateCrate(new Vec2(1265, 120));
 
             // Player
             CreatePlayer(new Vec2(200, 850));
-        }
-
-        void LoadLevel3()
-        {
-            // LevelLoader object
-            CreateLevelLoader(new Vec2(400, 250), 1000);
-
-            // Outer lines
-            CreateOuterLines();
-
-            // Environment
-            CreateBlock(new Vec2(0, 450), 200, 10);
-            CreateBlock(new Vec2(800, 450), -200, 10);
-
-            // Interactables
-
-
-            // Moving blocks
-            CreateBlock(new Vec2(300, 300), 200, 10, true, .4f, 3000);
-
-            // Gravity Zones
-
-
-            // Acid Puddles
-
-
-            // Player
-            CreatePlayer(new Vec2(400, 500));
         }
         #endregion
     }
